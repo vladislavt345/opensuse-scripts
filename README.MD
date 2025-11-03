@@ -56,4 +56,3 @@ sound.virtualDev = "es1371"
 ```bash
 paplay /usr/share/sounds/alsa/Front_Center.wav
 ```
-```
