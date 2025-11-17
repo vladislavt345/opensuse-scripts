@@ -1,83 +1,33 @@
-# VMware Audio Fix Scripts
+# SUSE Tumbleweed Fix & Setup Scripts
 
-Fix audio crackling/stuttering in Linux VMs running on VMware Workstation.
+This repository contains simple scripts that help:
 
-## Problem
-Audio works fine with ALSA but stutters in browsers (Firefox, Chrome) due to PipeWire issues in virtualized environments.
+* fix common issues in openSUSE Tumbleweed,
+* configure the system for VMware virtual machines,
+* install and optimize necessary system software.
 
-## Solutions
+## What the scripts address
 
-### Option 1: PulseAudio (Recommended)
-**File:** `vm_sound_fix.sh`
+### Audio in VMware
 
-Bypasses PipeWire and uses PulseAudio directly with ALSA.
+Some scripts improve audio stability by reducing crackling, delays, and dropouts.
+There are solutions for both PulseAudio and PipeWire, depending on your setup.
 
-```bash
-chmod +x vm_sound_fix.sh
-./vm_sound_fix.sh
-```
+### ASUS laptop configuration
 
-**Distro:** openSUSE (uses `zypper`)
+There are scripts that enable support for hotkeys, performance profiles, and battery management on ASUS laptops.
 
-### Option 2: PipeWire Optimization
-**File:** `vm_sound_also_fix.sh`
+### NVIDIA with Wayland
 
-Optimizes PipeWire settings for VMware.
+Additional scripts help enable kernel modesetting, improve Wayland compatibility, and prevent issues such as black screens on boot.
 
-```bash
-chmod +x vm_sound_also_fix.sh
-./vm_sound_also_fix.sh
-```
+### VMware optimization
 
-**Distro:** Universal (any distro with PipeWire)
+The repository also includes settings and adjustments that improve virtual machine performance and audio quality, including optional host-side configuration.
 
----
+## What these scripts provide
 
-## Additional Setup Scripts
-
-### ASUS Laptop Control (asusctl)
-**File:** `setup-asusctl.sh`
-
-Installs asusctl for ASUS laptop features on openSUSE Tumbleweed.
-
-```bash
-chmod +x setup-asusctl.sh
-./setup-asusctl.sh
-```
-
-Features: Performance profiles, keyboard backlight, battery management
-
-### NVIDIA Wayland Support
-**File:** `setup-nvidia-wayland.sh`
-
-Configures NVIDIA proprietary drivers for Wayland with dual monitor support.
-
-```bash
-chmod +x setup-nvidia-wayland.sh
-sudo ./setup-nvidia-wayland.sh
-```
-
-Enables kernel modesetting and early module loading for NVIDIA on openSUSE Tumbleweed.
-
----
-
-## VMware Host Settings (Windows 11)
-
-Run in PowerShell as Administrator:
-
-```powershell
-powercfg /powerthrottling disable /path "C:\Program Files (x86)\VMware\VMware Workstation\x64\vmware-vmx.exe"
-powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
-```
-
-## VMX File Tweak
-
-Add to your `.vmx` file:
-```
-sound.virtualDev = "es1371"
-```
-
-## Test Audio
-```bash
-paplay /usr/share/sounds/alsa/Front_Center.wav
-```
+* improved system stability
+* fixes for common Tumbleweed issues
+* hardware configuration
+* virtualization performance improvements
